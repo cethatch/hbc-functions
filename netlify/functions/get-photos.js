@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
 export async function handler() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
