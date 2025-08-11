@@ -3,7 +3,7 @@ export async function handler() {
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
   const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
 
-  // Step 1: Get access token
+  // Get access token
   const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -17,18 +17,16 @@ export async function handler() {
   const tokenData = await tokenRes.json();
   const accessToken = tokenData.access_token;
 
-  // Step 2: Fetch albums
-  const res = await fetch('https://photoslibrary.googleapis.com/v1/albums', {
+  // Fetch media items (all photos)
+  const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=50', {
     headers: {
       'Authorization': `Bearer ${accessToken}`
     }
   });
-
   const data = await res.json();
 
-  // Step 3: Return the albums list
   return {
     statusCode: 200,
-    body: JSON.stringify(data.albums || [])
+    body: JSON.stringify(data.mediaItems || [])
   };
 }
