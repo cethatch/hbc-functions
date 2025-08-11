@@ -22,12 +22,16 @@ export async function handler() {
 
   // Step 2: Fetch album items
   const res = await fetch('https://photoslibrary.googleapis.com/v1/albums', {
+<<<<<<< HEAD
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ albumId })
+=======
+    headers: { Authorization: `Bearer ${accessToken}` }
+>>>>>>> e801089 (Temp adding api call to get album id)
   });
 
   const data = await res.json();
