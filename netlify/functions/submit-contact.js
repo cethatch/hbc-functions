@@ -1,5 +1,7 @@
 const { google } = require('googleapis');
 
+const TESTING_RETURN_ERROR_503 = true;
+
 // Define allowed origins for requests
 const ALLOWED_ORIGINS = [
     'https://cethatch.github.io/hair-by-clare-react/contact',           // Your production domain
@@ -55,6 +57,14 @@ exports.handler = async (event, context) => {
             statusCode: 405,
             headers: getCorsHeaders(origin),
             body: JSON.stringify({ error: `HTTP Method '${event.httpMethod}' not allowed.` })
+        };
+    }
+
+    if (TESTING_RETURN_ERROR_503) {
+        return {
+            statusCode: 503,
+            headers: getCorsHeaders(origin),
+            body: JSON.stringify({ error: 'Testing flag set to TRUE. Auto-failed with code: 503.' })
         };
     }
 
