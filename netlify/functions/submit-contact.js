@@ -4,12 +4,12 @@ const TESTING_RETURN_ERROR_503 = false;
 
 // Define allowed origins for requests
 const ALLOWED_ORIGINS = [
-    'https://cethatch.github.io/hair-by-clare-react/',           // Your production domain
-    'https://www.cethatch.github.io/hair-by-clare-react/',       // Your production domain with www
-    'https://effervescent-stroopwafel-efe523.netlify.app',     // Your Netlify subdomain
-    'http://localhost:3000/hair-by-clare-react/',            // Local development
-    'http://localhost:8000/hair-by-clare-react/',            // Local development (alternate port)
-    'http://127.0.0.1:3000/hair-by-clare-react/'            // Local development (IP)
+    'https://cethatch.github.io',                               // Your production domain
+    'https://www.cethatch.github.io',                           // Your production domain with www
+    'https://effervescent-stroopwafel-efe523.netlify.app',      // Your Netlify subdomain
+    'http://localhost:3000',                                    // Local development
+    'http://localhost:8000',                                    // Local development (alternate port)
+    'http://127.0.0.1:3000'                                     // Local development (IP)
   ];
 
 const isOriginAllowed = (origin) => {
