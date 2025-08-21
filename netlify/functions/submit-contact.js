@@ -16,13 +16,18 @@ const isOriginAllowed = (origin) => {
 };
 
 const getCorsHeaders = (origin) => {
-    const headerOrigin = isOriginAllowed(origin) ? origin : null;
-    return {
-        'Access-Control-Allow-Origin': headerOrigin,
+    const headers = {
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Content-Type': 'application/json'
     };
+    
+    // Only add CORS origin header if origin is allowed
+    if (isOriginAllowed(origin)) {
+        headers['Access-Control-Allow-Origin'] = origin;
+    }
+    
+    return headers;
 };
 
 exports.handler = async (event, context) => {
