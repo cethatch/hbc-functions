@@ -19,6 +19,16 @@ exports.handler = async (event, context) => {
             };
         }
 
+        // Set up Google Sheets authentication
+        const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+        if (!privateKey) {
+        console.error('GOOGLE_PRIVATE_KEY environment variable is not set');
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Server configuration error' })
+        };
+        }
+
         const auth = new google.auth.GoogleAuth({
             credentials: {
               type: 'service_account',
