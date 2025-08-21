@@ -1,0 +1,14 @@
+{
+  "name": "hbc-functions",
+  "version": "1.0.0",
+  "description": "serverless functions in support of hair by clare static website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christine Thatcher",
+  "license": "ISC",
+  "dependencies": {
+    "googleapis": "^156.0.0"
+  }
+}
