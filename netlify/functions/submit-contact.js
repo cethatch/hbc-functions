@@ -59,7 +59,7 @@ exports.handler = async (event, context) => {
         const values = [[inquiryDate, inquiryStatus, name, phone, email, message]];
 
         try {
-            await sheets.spreadsheets.value.append({
+            await sheets.spreadsheets.values.append({
                 spreadsheetId: process.env.GOOGLE_SHEET_ID,
                 range: range,
                 valueInputOption: 'USER_ENTERED',
