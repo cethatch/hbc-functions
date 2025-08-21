@@ -123,7 +123,7 @@ exports.handler = async (event, context) => {
         // Get time info for sheet name and datestamp
         const now = new Date();
         const currentYear = now.getFullYear().toString();
-        const datestamp = `${now.getMonth().toString() + 1}-${now.getDate().toString()}-${currentYear}`;
+        const datestamp = `${(now.getMonth() + 1).toString()}-${now.getDate().toString()}-${currentYear}`;
 
         const sheetRange = `${currentYear}!A:F`;
 
