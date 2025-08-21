@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 
-const TESTING_RETURN_ERROR_503 = true;
+const TESTING_RETURN_ERROR_503 = false;
 
 // Define allowed origins for requests
 const ALLOWED_ORIGINS = [
