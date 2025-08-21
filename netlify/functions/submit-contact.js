@@ -1,6 +1,11 @@
 const { google } = require('googleapis');
 
 exports.handler = async (event, context) => {
+    
+    console.log('Function started');
+    console.log('Google object:', !!google);
+    console.log('Google.auth:', !!google.auth);
+    console.log('Google.sheets:', !!google.sheets);
 
     if (event.httpMethod != 'POST') {
         return {
