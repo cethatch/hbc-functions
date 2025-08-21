@@ -186,9 +186,9 @@ exports.handler = async (event, context) => {
         return {
             statusCode: 200,
             headers: getCorsHeaders(origin),
-            message: JSON.stringify({
+            body: JSON.stringify({
                 success: true,
-                body: 'Inquiry submitted successfully!'
+                message: 'Inquiry submitted successfully!'
             })
         };
     } catch (error) {
