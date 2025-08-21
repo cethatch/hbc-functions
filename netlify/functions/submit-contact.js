@@ -123,7 +123,7 @@ exports.handler = async (event, context) => {
         // Get time info for sheet name and datestamp
         const now = new Date();
         const currentYear = now.getFullYear().toString();
-        const datestamp = `${now.getMonth().toString()}-${now.getDay().toString()}-${currentYear}`;
+        const datestamp = `${now.getMonth().toString() + 1}-${now.getDate().toString()}-${currentYear}`;
 
         const sheetRange = `${currentYear}!A:F`;
 
@@ -131,7 +131,7 @@ exports.handler = async (event, context) => {
 
         // Add values to the correct sheet
         try {
-            sheets.spreadsheets.values.append({
+            await sheets.spreadsheets.values.append({
                 spreadsheetId: process.env.GOOGLE_SHEET_ID,
                 range: sheetRange,
                 valueInputOption: 'USER_ENTERED',
@@ -142,7 +142,7 @@ exports.handler = async (event, context) => {
         } catch (error) {
             // Create sheet if there isnt one for the current year
             if (error.code === 400 && error.message.includes("Unable to parse range")) {
-                sheets.spreadsheets.batchUpdate({
+                await sheets.spreadsheets.batchUpdate({
                     spreadsheetId: process.env.GOOGLE_SHEET_ID,
                     resource: {
                         requests: [{
@@ -156,7 +156,7 @@ exports.handler = async (event, context) => {
                 });
                 
                 // Add headers to the new sheet
-                sheets.spreadsheets.update({
+                await sheets.spreadsheets.update({
                     spreadsheetId: process.env.GOOGLE_SHEET_ID,
                     range: `${currentYear}!A1:F1`,
                     valueInputOption: 'USER_ENTERED',
@@ -166,7 +166,7 @@ exports.handler = async (event, context) => {
                 });
 
                 // Add the values to the new sheet
-                sheets.spreadsheets.values.append({
+                await sheets.spreadsheets.values.append({
                     spreadsheetId: process.env.GOOGLE_SHEET_ID,
                     range: sheetRange,
                     valueInputOption: 'USER_ENTERED',
@@ -183,7 +183,7 @@ exports.handler = async (event, context) => {
             headers: getCorsHeaders(origin),
             message: JSON.stringify({
                 success: true,
-                message: 'Inquiry submitted successfully!'
+                body: 'Inquiry submitted successfully!'
             })
         };
     } catch (error) {
